@@ -1,0 +1,73 @@
+import * as vscode from 'vscode';
+export declare class ChatPanel implements vscode.WebviewViewProvider {
+    private readonly context;
+    static readonly viewType = "my-coder.mainView";
+    private static instance?;
+    view?: vscode.WebviewView;
+    get panel(): {
+        webview: vscode.Webview;
+    } | null;
+    private readonly historyManager;
+    private readonly workspaceAnalyzer;
+    private readonly projectBuilder;
+    private readonly buildRunner;
+    private readonly patchManager;
+    private readonly todoTracker;
+    private readonly repoMapAgent;
+    private aiService?;
+    private interviewEngine?;
+    private isRunning;
+    private pendingPatches;
+    private currentAnalysis?;
+    private savedPrompts;
+    private cachedProjectRules;
+    constructor(context: vscode.ExtensionContext);
+    /** Called by extension.ts setApiKey command so the command-palette path also writes to SQLite. */
+    saveApiKeyToDb(keyName: string, keyValue: string): void;
+    /** Called directly by extension.ts clearHistory command — works even when webview is not visible. */
+    clearHistory(): Promise<void>;
+    resolveWebviewView(webviewView: vscode.WebviewView, _context: vscode.WebviewViewResolveContext, _token: vscode.CancellationToken): void;
+    static createOrShow(context: vscode.ExtensionContext): ChatPanel;
+    static getInstance(): ChatPanel | undefined;
+    private initialize;
+    private pushActiveFile;
+    private onMessage;
+    private startNewAppMode;
+    private handleInterviewAnswer;
+    private runNewAppPipeline;
+    private startExistingProjectMode;
+    private handleProjectRequest;
+    private applyPendingPatches;
+    private rejectPatches;
+    private runBuildWithAutoFix;
+    private handleGeneralChat;
+    private routeUserInput;
+    private doSignIn;
+    private doSignInFallback;
+    private doSignOut;
+    private saveApiKey;
+    private renameSession;
+    private updateSettings;
+    private handleTestConnection;
+    private handleDetectOllama;
+    private pushProviderStatus;
+    private sendHistoryList;
+    private loadSession;
+    private deleteSession;
+    private clearAllHistory;
+    private handleSlashCommand;
+    private handleSecurityScan;
+    private handleWebSearch;
+    private handleFixActiveFile;
+    private handleExplainActiveFile;
+    private handleReviewActiveFile;
+    private getAI;
+    private addAssistantMessage;
+    private send;
+    private sendProgress;
+    private sendError;
+    private shortPath;
+    private selectRelevantFiles;
+    private buildHtml;
+}
+//# sourceMappingURL=chatPanel.d.ts.map

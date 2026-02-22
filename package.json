@@ -1,0 +1,406 @@
+{
+  "name": "my-coder",
+  "displayName": "MY Coder",
+  "description": "Autonomous AI-powered Developer Agent inside VS Code",
+  "version": "1.0.0",
+  "publisher": "my-coder",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "AI",
+    "Other"
+  ],
+  "keywords": [
+    "ai",
+    "agent",
+    "code generation",
+    "autonomous",
+    "developer"
+  ],
+  "activationEvents": [
+    "onStartupFinished",
+    "onCommand:my-coder.openPanel",
+    "onCommand:my-coder.setApiKey",
+    "onView:my-coder.mainView"
+  ],
+  "main": "./dist/extension.js",
+  "icon": "resources/icon.png",
+  "contributes": {
+    "commands": [
+      {
+        "command": "my-coder.openPanel",
+        "title": "MY Coder: Open Panel",
+        "icon": "$(robot)"
+      },
+      {
+        "command": "my-coder.newApp",
+        "title": "MY Coder: \u2728 Create New App"
+      },
+      {
+        "command": "my-coder.workOnProject",
+        "title": "MY Coder: \ud83d\udd27 Work On Current Project"
+      },
+      {
+        "command": "my-coder.signIn",
+        "title": "MY Coder: Sign In with Google"
+      },
+      {
+        "command": "my-coder.signOut",
+        "title": "MY Coder: Sign Out"
+      },
+      {
+        "command": "my-coder.clearHistory",
+        "title": "MY Coder: Clear Chat History"
+      },
+      {
+        "command": "my-coder.setApiKey",
+        "title": "MY Coder: Set API Key"
+      },
+      {
+        "command": "my-coder.securityScan",
+        "title": "MY Coder: \ud83d\udd12 Run Security Scan",
+        "icon": "$(shield)"
+      },
+      {
+        "command": "my-coder.runDev",
+        "title": "MY Coder: /dev \u2014 Development Agent"
+      },
+      {
+        "command": "my-coder.runTest",
+        "title": "MY Coder: /test \u2014 Generate Tests"
+      },
+      {
+        "command": "my-coder.runDocs",
+        "title": "MY Coder: /docs \u2014 Generate Docs"
+      },
+      {
+        "command": "my-coder.runReview",
+        "title": "MY Coder: /review \u2014 Code Review"
+      },
+      {
+        "command": "my-coder.runSecurity",
+        "title": "MY Coder: /security \u2014 Security Audit"
+      },
+      {
+        "command": "my-coder.runFigma",
+        "title": "MY Coder: /figma \u2014 Figma to Code"
+      },
+      {
+        "command": "my-coder.runExplain",
+        "title": "MY Coder: /explain \u2014 Explain Code"
+      },
+      {
+        "command": "my-coder.runRefactor",
+        "title": "MY Coder: /refactor \u2014 Refactor Code"
+      },
+      {
+        "command": "my-coder.runFix",
+        "title": "MY Coder: /fix \u2014 Fix Bug"
+      },
+      {
+        "command": "my-coder.webSearch",
+        "title": "MY Coder: \ud83d\udd0d Web Search"
+      },
+      {
+        "command": "my-coder.figmaToCode",
+        "title": "MY Coder: Figma to Code"
+      },
+      {
+        "command": "my-coder.triggerInlineCompletion",
+        "title": "MY Coder: Trigger Inline Completion"
+      },
+      {
+        "command": "my-coder.initRules",
+        "title": "MY Coder: Initialize Project Rules (.mycoder/rules/)"
+      },
+      {
+        "command": "my-coder.inlineChat",
+        "title": "MY Coder: Inline Chat",
+        "icon": "$(comment)"
+      },
+      {
+        "command": "my-coder.showBottomPanel",
+        "title": "MY Coder: Show Bottom Panel",
+        "icon": "$(layout-panel)"
+      },
+      {
+        "command": "my-coder.sendToPrompt",
+        "title": "MY Coder: Send to Prompt"
+      },
+      {
+        "command": "my-coder.explainSelection",
+        "title": "MY Coder: Explain"
+      },
+      {
+        "command": "my-coder.refactorSelection",
+        "title": "MY Coder: Refactor"
+      },
+      {
+        "command": "my-coder.generateTestsForSelection",
+        "title": "MY Coder: Generate Tests"
+      },
+      {
+        "command": "my-coder.optimizeSelection",
+        "title": "MY Coder: Optimize"
+      },
+      {
+        "command": "my-coder.fixSelection",
+        "title": "MY Coder: Fix"
+      },
+      {
+        "command": "my-coder.runOptimize",
+        "title": "MY Coder: /optimize \u2014 Optimize Code"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "my-coder-sidebar",
+          "title": "MY Coder",
+          "icon": "resources/sidebar-icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "my-coder-sidebar": [
+        {
+          "type": "webview",
+          "id": "my-coder.mainView",
+          "name": "MY Coder Agent"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "MY Coder",
+      "properties": {
+        "myCoder.aiProvider": {
+          "type": "string",
+          "enum": [
+            "openai",
+            "anthropic",
+            "groq",
+            "gemini",
+            "mistral",
+            "ollama",
+            "openrouter",
+            "perplexity",
+            "custom"
+          ],
+          "enumDescriptions": [
+            "OpenAI \u2014 GPT-4o, o1, etc.",
+            "Anthropic \u2014 Claude Opus, Sonnet, Haiku",
+            "Groq \u2014 Ultra-fast Llama/Mixtral inference",
+            "Google Gemini \u2014 Gemini 2.0 Flash, 1.5 Pro",
+            "Mistral AI \u2014 Mistral Large, Codestral",
+            "Ollama \u2014 Run models locally (free, no key needed)",
+            "OpenRouter \u2014 Access 200+ models from one key",
+            "Perplexity \u2014 Sonar Online with live web search",
+            "Custom \u2014 Any OpenAI-compatible endpoint"
+          ],
+          "default": "openai",
+          "description": "AI provider to use for code generation"
+        },
+        "myCoder.model": {
+          "type": "string",
+          "default": "gpt-4o",
+          "description": "Model name to use (must match provider's available models)"
+        },
+        "myCoder.customBaseUrl": {
+          "type": "string",
+          "default": "",
+          "description": "Custom API base URL (for Ollama, LM Studio, self-hosted, or OpenAI-compatible APIs). Leave empty to use the provider default."
+        },
+        "myCoder.maxRetries": {
+          "type": "number",
+          "default": 3,
+          "description": "Maximum build fix retry attempts"
+        },
+        "myCoder.autoRunBuild": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically run build after code generation"
+        },
+        "myCoder.historyStorage": {
+          "type": "string",
+          "enum": [
+            "local",
+            "drive"
+          ],
+          "default": "local",
+          "description": "Where to store chat history"
+        },
+        "myCoder.tavilyApiKey": {
+          "type": "string",
+          "default": "",
+          "description": "Tavily API key for web search/extraction (tavily.com)"
+        },
+        "myCoder.pexelsApiKey": {
+          "type": "string",
+          "default": "",
+          "description": "Pexels API key for stock photos (pexels.com/api)"
+        },
+        "myCoder.perplexityApiKey": {
+          "type": "string",
+          "default": "",
+          "description": "Perplexity AI API key (https://www.perplexity.ai/settings/api)"
+        },
+        "myCoder.enableInlineCompletions": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable inline code completions (Alt/Option+C)"
+        },
+        "myCoder.enableSecurityScanOnSave": {
+          "type": "boolean",
+          "default": false,
+          "description": "Run security scan on file save"
+        },
+        "myCoder.todoAutoSync": {
+          "type": "boolean",
+          "default": true,
+          "description": "Auto-extract TODOs from AI responses"
+        },
+        "myCoder.repoMapEnabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Include repo map in AI context for large codebases"
+        },
+        "myCoder.parallelFilesCount": {
+          "type": "number",
+          "default": 4,
+          "description": "Number of files to generate in parallel (1-8)"
+        },
+        "myCoder.autoCommit": {
+          "type": "boolean",
+          "default": false,
+          "description": "Auto-commit after applying patches (requires git)"
+        },
+        "myCoder.commitMessage": {
+          "type": "string",
+          "default": "auto",
+          "description": "Commit message strategy: auto (AI-generated) or a fixed string"
+        }
+      }
+    },
+    "menus": {
+      "editor/title": [
+        {
+          "command": "my-coder.openPanel",
+          "group": "navigation"
+        }
+      ],
+      "editor/context": [
+        {
+          "submenu": "myCoderSubmenu",
+          "group": "myCoderGroup@1",
+          "when": "editorTextFocus"
+        }
+      ],
+      "myCoderSubmenu": [
+        {
+          "command": "my-coder.explainSelection",
+          "group": "1_analysis@1",
+          "when": "editorTextFocus"
+        },
+        {
+          "command": "my-coder.refactorSelection",
+          "group": "1_analysis@2",
+          "when": "editorTextFocus"
+        },
+        {
+          "command": "my-coder.sendToPrompt",
+          "group": "2_actions@1"
+        },
+        {
+          "command": "my-coder.generateTestsForSelection",
+          "group": "2_actions@2",
+          "when": "editorTextFocus"
+        },
+        {
+          "command": "my-coder.optimizeSelection",
+          "group": "2_actions@3",
+          "when": "editorTextFocus"
+        },
+        {
+          "command": "my-coder.fixSelection",
+          "group": "2_actions@4",
+          "when": "editorTextFocus"
+        },
+        {
+          "command": "my-coder.inlineChat",
+          "group": "3_chat@1"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "my-coder.triggerInlineCompletion",
+        "key": "alt+c",
+        "mac": "alt+c",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "my-coder.openPanel",
+        "key": "ctrl+shift+m",
+        "mac": "cmd+shift+m"
+      },
+      {
+        "command": "my-coder.inlineChat",
+        "key": "ctrl+i",
+        "mac": "cmd+i",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "my-coder.showBottomPanel",
+        "key": "ctrl+shift+p",
+        "mac": "cmd+shift+p"
+      }
+    ],
+    "submenus": [
+      {
+        "id": "myCoderSubmenu",
+        "label": "MY Coder"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js",
+    "package": "vsce package",
+    "build": "webpack --config webpack.config.js",
+    "build:watch": "webpack --config webpack.config.js --watch",
+    "rebuild-sqlite": "electron-rebuild -f -w better-sqlite3",
+    "postinstall": "electron-rebuild -f -w better-sqlite3 || echo 'SQLite rebuild skipped'"
+  },
+  "devDependencies": {
+    "@types/glob": "^8.1.0",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.85.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0",
+    "glob": "^8.1.0",
+    "mocha": "^10.1.0",
+    "ts-loader": "^9.4.2",
+    "typescript": "^5.3.0",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1",
+    "@vscode/test-electron": "^2.2.0",
+    "vsce": "^2.15.0",
+    "@types/better-sqlite3": "^7.6.8",
+    "@electron/rebuild": "^3.6.0"
+  },
+  "dependencies": {
+    "axios": "^1.6.0",
+    "diff": "^5.1.0",
+    "uuid": "^9.0.0",
+    "openai": "^4.20.0",
+    "@anthropic-ai/sdk": "^0.20.0",
+    "better-sqlite3": "^9.4.3"
+  }
+}
