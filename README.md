@@ -9,6 +9,7 @@
 [![VS Code](https://img.shields.io/badge/VS%20Code-Extension-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white)](https://code.visualstudio.com/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-82%25-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![SQLite](https://img.shields.io/badge/SQLite-Persistent%20History-003B57?style=for-the-badge&logo=sqlite&logoColor=white)](https://www.sqlite.org/)
+[![Google Drive](https://img.shields.io/badge/Google%20Drive-Cloud%20Sync-4285F4?style=for-the-badge&logo=google-drive&logoColor=white)](https://drive.google.com/)
 [![Open Source](https://img.shields.io/badge/Open%20Source-%E2%9D%A4%EF%B8%8F-brightgreen?style=for-the-badge)](https://github.com/Abd-ul-Hannan/My-Coder)
 [![Status](https://img.shields.io/badge/Status-Ready%20for%20Public%20Use-success?style=for-the-badge)]()
 
@@ -32,6 +33,7 @@ Most AI coding tools are locked behind subscriptions, limited in features, or re
 - 🔑 **Your API Key, Your Control** — plug in any supported AI provider and go
 - 🧠 **Truly Intelligent** — not just autocomplete; understands your full codebase context
 - 💾 **Persistent Memory** — every conversation is saved locally with SQLite
+- ☁️ **Cloud Backup** — optionally sign in with Google to sync history across all your devices
 - ⚡ **Lives Inside VS Code** — zero context switching, maximum productivity
 
 ---
@@ -61,6 +63,9 @@ Tell My-Coder to upgrade old code to modern standards — update deprecated APIs
 
 ### 🗄️ Persistent Chat History (SQLite)
 Every conversation is automatically saved to a local SQLite database. Your history is always there when you come back — organized and searchable.
+
+### ☁️ Google Drive Backup (Optional)
+Want your chat history safe across devices? Sign in with your Google account and My-Coder will automatically sync and back up your entire chat history to your Google Drive — so you never lose a conversation, even if you switch machines.
 
 ---
 
@@ -159,15 +164,42 @@ See [CONTEXT_MENU.md](CONTEXT_MENU.md) for the full list of actions.
 
 ---
 
-## 🗄️ SQLite — Chat History
+## 🗄️ SQLite — Local Chat History
 
-All conversations are stored locally in a SQLite database on your machine.
+All conversations are stored locally in a SQLite database on your machine by default.
 
 - ✅ No cloud sync, no tracking, no data leaving your device
 - ✅ History persists across VS Code sessions and restarts
 - ✅ Database is created automatically on first use — zero setup
 
 See [SQLITE_SETUP.md](SQLITE_SETUP.md) for the full schema and advanced configuration.
+
+---
+
+## ☁️ Google Drive — Cloud Chat History (Optional)
+
+Want your chat history backed up and available across all your devices? My-Coder supports **Google Drive sync** as an optional feature.
+
+### How to enable it
+
+1. Open the My-Coder panel inside VS Code
+2. Click **"Sign in with Google"**
+3. Authenticate with your Google account
+4. My-Coder will automatically sync your chat history to a dedicated folder in your Google Drive
+
+### What gets saved
+
+| Data | Saved Locally (SQLite) | Saved to Google Drive |
+|---|---|---|
+| Chat messages | ✅ Always | ✅ When signed in |
+| AI responses | ✅ Always | ✅ When signed in |
+| Timestamps | ✅ Always | ✅ When signed in |
+
+### Privacy
+
+- My-Coder only accesses the folder it creates in your Drive — nothing else
+- You can revoke access at any time from your [Google Account settings](https://myaccount.google.com/permissions)
+- Signing out of Google Drive in My-Coder immediately stops all syncing
 
 ---
 
@@ -226,9 +258,10 @@ My-Coder/
 - [x] Bug detection and fixing
 - [x] Code editing, refactoring, and modernization
 - [x] Full project generation from scratch in any language
+- [x] Google Drive sign-in & cloud chat history sync
 - [ ] Publish to VS Code Marketplace
 - [ ] Multi-model switching from the UI panel
-- [x] Inline code completions
+- [* ] Inline code completions
 - [ ] Multi-file / codebase-wide context awareness
 - [ ] Export chat history as Markdown or PDF
 - [ ] Custom prompt templates
