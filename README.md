@@ -228,7 +228,7 @@ My-Coder/
 - [x] Full project generation from scratch in any language
 - [ ] Publish to VS Code Marketplace
 - [ ] Multi-model switching from the UI panel
-- [ ] Inline code completions
+- [x] Inline code completions
 - [ ] Multi-file / codebase-wide context awareness
 - [ ] Export chat history as Markdown or PDF
 - [ ] Custom prompt templates
