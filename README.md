@@ -261,7 +261,7 @@ My-Coder/
 - [x] Google Drive sign-in & cloud chat history sync
 - [ ] Publish to VS Code Marketplace
 - [ ] Multi-model switching from the UI panel
-- [* ] Inline code completions
+- [x]Inline code completions
 - [ ] Multi-file / codebase-wide context awareness
 - [ ] Export chat history as Markdown or PDF
 - [ ] Custom prompt templates
